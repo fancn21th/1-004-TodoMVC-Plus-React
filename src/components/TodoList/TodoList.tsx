@@ -28,7 +28,7 @@ const LI = styled.li`
   list-style-type: none;
   background: #eee;
   font-size: 18px;
-  transition: 0.2s;
+  transition: all 200ms ease;
 
   /* make the list items unselectable */
   -webkit-user-select: none;
