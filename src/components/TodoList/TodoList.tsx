@@ -7,10 +7,12 @@ interface Todo {
 }
 
 interface TodoItemProps {
+  /**  Todo 对象 */
   todo: Todo;
 }
 
 interface TodoListProps {
+  /**  Todo 对象数组 这段注释可以被看到 */
   todos: Todo[];
 }
 
