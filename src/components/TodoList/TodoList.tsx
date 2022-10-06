@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-type Todo = {
+interface Todo {
   title: string;
   id: number;
   completed?: boolean;
-};
+}
 
 interface TodoItemProps {
   todo: Todo;
