@@ -9,6 +9,12 @@ interface AddTodoProps {
 const Div = styled.div`
   width: 100%;
   box-sizing: border-box;
+
+  ::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
 `;
 
 const Input = styled.input`
