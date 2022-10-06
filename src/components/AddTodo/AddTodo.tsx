@@ -34,7 +34,7 @@ const Button = styled.button`
   width: 20%;
   height: 40px;
   padding: 10px;
-  background: #2196f3;
+  background: ${(props) => props.theme.colors.primary100};
   color: white;
   font-size: 17px;
   border: 1px solid grey;
@@ -43,7 +43,7 @@ const Button = styled.button`
   line-height: 20px; // make the text align center vertically
 
   :hover {
-    background: #0b7dda;
+    background: ${(props) => props.theme.colors.primary200};
   }
 `;
 

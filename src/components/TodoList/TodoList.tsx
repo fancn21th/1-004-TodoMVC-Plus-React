@@ -68,7 +68,7 @@ const CloseButton = styled.span`
   transition: all 200ms ease;
 
   :hover {
-    background-color: #f44336;
+    background-color: ${(props) => props.theme.colors.danger};
     color: white;
   }
 `;
