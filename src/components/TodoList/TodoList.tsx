@@ -1,6 +1,20 @@
 import styled from "styled-components";
 
-interface TodoListProps {}
+type Todo = {
+  title: string;
+  id: number;
+  completed?: boolean;
+};
+
+interface TodoItemProps {
+  todo: Todo;
+}
+
+interface TodoListProps {
+  todos: Array<Todo>;
+}
+
+// styled components
 
 const UL = styled.ul`
   margin: 0;
@@ -22,12 +36,27 @@ const LI = styled.li`
   -ms-user-select: none;
   user-select: none;
 
-  :nth-child(odd) {
-    background: #f9f9f9;
-  }
-
   :hover {
     background: #ddd;
+  }
+`;
+
+const CompletedLI = styled(LI)`
+  background: #888;
+  color: #fff;
+  text-decoration: line-through;
+
+  ::before {
+    content: "";
+    position: absolute;
+    border-color: #fff;
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    top: 10px;
+    left: 16px;
+    transform: rotate(45deg);
+    height: 15px;
+    width: 7px;
   }
 `;
 
@@ -44,27 +73,23 @@ const CloseButton = styled.span`
   }
 `;
 
-export const TodoList = ({}: TodoListProps) => {
+const TodoItem = ({ todo: { title, completed } }: TodoItemProps) => {
+  return completed ? (
+    <CompletedLI> {title}</CompletedLI>
+  ) : (
+    <LI>
+      {title}
+      <CloseButton>×</CloseButton>
+    </LI>
+  );
+};
+
+export const TodoList = ({ todos }: TodoListProps) => {
   return (
     <UL>
-      <LI>
-        Hit the gym <CloseButton>×</CloseButton>
-      </LI>
-      <LI>
-        Pay bills <CloseButton>×</CloseButton>
-      </LI>
-      <LI>
-        Meet George <CloseButton>×</CloseButton>
-      </LI>
-      <LI>
-        Buy eggs <CloseButton>×</CloseButton>
-      </LI>
-      <LI>
-        Read a book <CloseButton>×</CloseButton>
-      </LI>
-      <LI>
-        Organize office <CloseButton>×</CloseButton>
-      </LI>
+      {todos.map((todo) => (
+        <TodoItem key={todo.id} todo={todo}></TodoItem>
+      ))}
     </UL>
   );
 };
