@@ -35,6 +35,10 @@ const Button = styled.button`
   border-left: none;
   cursor: pointer;
   line-height: 20px; // make the text align center vertically
+
+  :hover {
+    background: #0b7dda;
+  }
 `;
 
 export const AddTodo = ({ label = "请输入" }: AddTodoProps) => {
