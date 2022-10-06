@@ -1,4 +1,3 @@
-import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { AddTodo } from "./AddTodo";
@@ -16,5 +15,5 @@ const Template: ComponentStory<typeof AddTodo> = (args) => (
 export const Primary = Template.bind({});
 
 Primary.args = {
-  label: "Add a todo",
+  label: "请输入 TODO 事项",
 };
