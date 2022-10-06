@@ -11,7 +11,7 @@ interface TodoItemProps {
 }
 
 interface TodoListProps {
-  todos: Array<Todo>;
+  todos: Todo[];
 }
 
 // styled components
