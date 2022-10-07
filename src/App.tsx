@@ -4,14 +4,18 @@ import { TodoList } from "@/components/TodoList/TodoList";
 import { useTodos } from "@/hooks";
 
 function App() {
-  const [todos, addTodo, removeTodo] = useTodos();
+  const [todos, addTodo, removeTodo, toggleTodo] = useTodos();
 
   return (
     <div className="App">
       <h1>React + Typescript TODOs</h1>
       <AddTodo onAddTodo={(title) => addTodo(title)} />
       <hr />
-      <TodoList todos={todos} onRemoveTodo={(id) => removeTodo(id)} />
+      <TodoList
+        todos={todos}
+        onRemoveTodo={(id) => removeTodo(id)}
+        onToggleTodo={(id) => toggleTodo(id)}
+      />
     </div>
   );
 }

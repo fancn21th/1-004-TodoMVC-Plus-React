@@ -7,12 +7,14 @@ interface TodoItemProps {
   todo: Todo;
   index: number;
   onRemoveTodo: () => void;
+  onToggleTodo: () => void;
 }
 
 interface TodoListProps {
   /**  Todo 对象数组 这段注释可以被看到 */
   todos: Todo[];
   onRemoveTodo: (id: number) => void;
+  onToggleTodo: (id: number) => void;
 }
 
 interface LIProps {
@@ -86,18 +88,23 @@ const TodoItem = ({
   todo: { title, completed },
   index,
   onRemoveTodo,
+  onToggleTodo,
 }: TodoItemProps) => {
   return completed ? (
     <CompletedLI index={index}> {title}</CompletedLI>
   ) : (
-    <LI index={index}>
+    <LI index={index} onClick={() => onToggleTodo()}>
       {title}
       <CloseButton onClick={() => onRemoveTodo()}>×</CloseButton>
     </LI>
   );
 };
 
-export const TodoList = ({ todos, onRemoveTodo }: TodoListProps) => {
+export const TodoList = ({
+  todos,
+  onRemoveTodo,
+  onToggleTodo,
+}: TodoListProps) => {
   return (
     <UL>
       {todos.map((todo, index) => (
@@ -106,6 +113,7 @@ export const TodoList = ({ todos, onRemoveTodo }: TodoListProps) => {
           todo={todo}
           index={index + 1}
           onRemoveTodo={() => onRemoveTodo(todo.id)}
+          onToggleTodo={() => onToggleTodo(todo.id)}
         ></TodoItem>
       ))}
     </UL>
