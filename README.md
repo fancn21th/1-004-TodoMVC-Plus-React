@@ -16,7 +16,7 @@
   npm run dev
   ```
 
-## Typescript
+## How to type a React Component / Hook
 
 ### Function Component
 
@@ -39,10 +39,6 @@ const foo: FunctionComponent<FooProps>  = ({...}) => { return ...}
   ...
   };
   ```
-
-### Impersonate Native DOM
-
-TBD...
 
 ### Controlled Component
 
@@ -71,4 +67,19 @@ export const AddTodo: FunctionComponent<AddTodoProps> = ({
     </Div>
   );
 };
+```
+
+## How to type others
+
+### Impersonate Native DOM
+
+当你想包装另外一个 组件 的 时候 如何去 type props ? 需要一个个列出来吗 ?
+
+```tsx
+type CustomProps = {
+  foo?: string;
+};
+function Bar(props: CustomProps & TypeA & Type B) {
+  ...
+}
 ```
