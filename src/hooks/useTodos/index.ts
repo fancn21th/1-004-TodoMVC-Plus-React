@@ -4,12 +4,19 @@ interface TodosState {
   todos: Todo[];
 }
 
-interface TodosAction {
-  type: "add" | "remove";
-  payload: {
-    title: string;
-  };
-}
+type TodosAction =
+  | {
+      type: "add";
+      payload: {
+        title: string;
+      };
+    }
+  | {
+      type: "remove";
+      payload: {
+        id: number;
+      };
+    };
 
 const initialState = { todos: [] };
 
@@ -27,6 +34,11 @@ const reducer = (state: TodosState, action: TodosAction): TodosState => {
           },
         ],
       };
+    case "remove":
+      return {
+        ...state,
+        todos: state.todos.filter((todo) => todo.id !== action.payload.id),
+      };
     default:
       throw new Error();
   }
@@ -38,7 +50,11 @@ export interface Todo {
   completed?: boolean;
 }
 
-export const useTodos = (): [Todo[], (title: string) => void] => {
+export const useTodos = (): [
+  Todo[],
+  (title: string) => void,
+  (id: number) => void
+] => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const addTodo = (title: string): void => {
@@ -50,5 +66,14 @@ export const useTodos = (): [Todo[], (title: string) => void] => {
     });
   };
 
-  return [state.todos, addTodo];
+  const removeTodo = (id: number): void => {
+    dispatch({
+      type: "remove",
+      payload: {
+        id,
+      },
+    });
+  };
+
+  return [state.todos, addTodo, removeTodo];
 };

@@ -6,11 +6,13 @@ interface TodoItemProps {
   /**  Todo 对象 */
   todo: Todo;
   index: number;
+  onRemoveTodo: () => void;
 }
 
 interface TodoListProps {
   /**  Todo 对象数组 这段注释可以被看到 */
   todos: Todo[];
+  onRemoveTodo: (id: number) => void;
 }
 
 interface LIProps {
@@ -80,22 +82,31 @@ const CloseButton = styled.span`
   }
 `;
 
-const TodoItem = ({ todo: { title, completed }, index }: TodoItemProps) => {
+const TodoItem = ({
+  todo: { title, completed },
+  index,
+  onRemoveTodo,
+}: TodoItemProps) => {
   return completed ? (
     <CompletedLI index={index}> {title}</CompletedLI>
   ) : (
     <LI index={index}>
       {title}
-      <CloseButton>×</CloseButton>
+      <CloseButton onClick={() => onRemoveTodo()}>×</CloseButton>
     </LI>
   );
 };
 
-export const TodoList = ({ todos }: TodoListProps) => {
+export const TodoList = ({ todos, onRemoveTodo }: TodoListProps) => {
   return (
     <UL>
       {todos.map((todo, index) => (
-        <TodoItem key={todo.id} todo={todo} index={index + 1}></TodoItem>
+        <TodoItem
+          key={todo.id}
+          todo={todo}
+          index={index + 1}
+          onRemoveTodo={() => onRemoveTodo(todo.id)}
+        ></TodoItem>
       ))}
     </UL>
   );
