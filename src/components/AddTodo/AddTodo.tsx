@@ -1,7 +1,9 @@
+import { useState, FunctionComponent } from "react";
 import styled from "styled-components";
 
 interface AddTodoProps {
   label?: string;
+  onAddTodo?: (newTodoTitle: string) => void;
 }
 
 // styled components
@@ -47,11 +49,26 @@ const Button = styled.button`
   }
 `;
 
-export const AddTodo = ({ label = "请输入" }: AddTodoProps) => {
+export const AddTodo: FunctionComponent<AddTodoProps> = ({
+  label = "请输入",
+  onAddTodo = () => {},
+}) => {
+  const [todo, setTodo] = useState<string>("");
+
+  const onChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    setTodo(e.target.value);
+  };
+
+  const onClick = function () {
+    onAddTodo(todo);
+  };
+
   return (
     <Div>
-      <Input type="text" placeholder={label} />
-      <Button type="submit">增加</Button>
+      <Input type="text" value={todo} placeholder={label} onChange={onChange} />
+      <Button type="submit" onClick={onClick}>
+        增加
+      </Button>
     </Div>
   );
 };
