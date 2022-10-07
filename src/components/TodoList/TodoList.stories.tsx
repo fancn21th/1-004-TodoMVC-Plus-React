@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { TodoList } from "./TodoList";
 
 export default {
-  title: "TodoMVC/TodoList",
+  title: "FunTodos/TodoList",
   component: TodoList,
   argTypes: {},
 } as ComponentMeta<typeof TodoList>;

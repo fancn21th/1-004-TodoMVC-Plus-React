@@ -10,7 +10,7 @@
   npm run storybook
   ```
 
-- todomvc
+- funTodos
 
   ```shell
   npm run dev
