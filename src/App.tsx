@@ -22,7 +22,9 @@ function App() {
 
   return (
     <div className="App">
+      <h1>React + Typescript TODOs</h1>
       <AddTodo />
+      <hr />
       <TodoList todos={todos} />
     </div>
   );

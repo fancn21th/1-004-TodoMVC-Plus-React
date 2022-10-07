@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 
 interface Todo {
@@ -9,11 +10,16 @@ interface Todo {
 interface TodoItemProps {
   /**  Todo 对象 */
   todo: Todo;
+  index: number;
 }
 
 interface TodoListProps {
   /**  Todo 对象数组 这段注释可以被看到 */
   todos: Todo[];
+}
+
+interface LIProps {
+  index: number;
 }
 
 // styled components
@@ -23,12 +29,16 @@ const UL = styled.ul`
   padding: 0;
 `;
 
-const LI = styled.li`
+const LI = styled.li<
+  LIProps &
+    React.HTMLProps<HTMLButtonElement> &
+    React.HTMLAttributes<HTMLButtonElement>
+>`
   cursor: pointer;
   position: relative;
   padding: 12px 8px 12px 40px;
   list-style-type: none;
-  background: #eee;
+  background: ${(props) => (props.index % 2 === 0 ? "#eee" : "#f9f9f9")};
   font-size: 18px;
   transition: all 200ms ease;
 
@@ -75,11 +85,11 @@ const CloseButton = styled.span`
   }
 `;
 
-const TodoItem = ({ todo: { title, completed } }: TodoItemProps) => {
+const TodoItem = ({ todo: { title, completed }, index }: TodoItemProps) => {
   return completed ? (
-    <CompletedLI> {title}</CompletedLI>
+    <CompletedLI index={index}> {title}</CompletedLI>
   ) : (
-    <LI>
+    <LI index={index}>
       {title}
       <CloseButton>×</CloseButton>
     </LI>
@@ -89,8 +99,8 @@ const TodoItem = ({ todo: { title, completed } }: TodoItemProps) => {
 export const TodoList = ({ todos }: TodoListProps) => {
   return (
     <UL>
-      {todos.map((todo) => (
-        <TodoItem key={todo.id} todo={todo}></TodoItem>
+      {todos.map((todo, index) => (
+        <TodoItem key={todo.id} todo={todo} index={index + 1}></TodoItem>
       ))}
     </UL>
   );
