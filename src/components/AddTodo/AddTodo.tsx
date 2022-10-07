@@ -65,6 +65,13 @@ export const AddTodo: FunctionComponent<AddTodoProps> = ({
     setTodo(e.target.value);
   };
 
+  const onKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
+    if (e.key === "Enter" && todo.trim()) {
+      onAddTodo(todo);
+      setTodo("");
+    }
+  };
+
   const onClick = function () {
     if (todo.trim()) {
       onAddTodo(todo);
@@ -74,7 +81,13 @@ export const AddTodo: FunctionComponent<AddTodoProps> = ({
 
   return (
     <Div>
-      <Input type="text" value={todo} placeholder={label} onChange={onChange} />
+      <Input
+        type="text"
+        value={todo}
+        placeholder={label}
+        onChange={onChange}
+        onKeyDown={onKeyDown}
+      />
       <Button type="submit" onClick={onClick}>
         增加
       </Button>
