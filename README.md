@@ -35,6 +35,7 @@ export const AddTodo: FunctionComponent<AddTodoProps> = ({
 
   const onClick = function () {
     onAddTodo(todo);
+    setTodo("");
   };
 
   return (

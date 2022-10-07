@@ -60,7 +60,10 @@ export const AddTodo: FunctionComponent<AddTodoProps> = ({
   };
 
   const onClick = function () {
-    onAddTodo(todo);
+    if (todo.trim()) {
+      onAddTodo(todo);
+      setTodo("");
+    }
   };
 
   return (

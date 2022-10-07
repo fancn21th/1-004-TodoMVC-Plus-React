@@ -20,10 +20,14 @@ function App() {
     },
   ]);
 
+  const onAddTodo = (title: string) => {
+    console.log(title);
+  };
+
   return (
     <div className="App">
       <h1>React + Typescript TODOs</h1>
-      <AddTodo />
+      <AddTodo onAddTodo={onAddTodo} />
       <hr />
       <TodoList todos={todos} />
     </div>
