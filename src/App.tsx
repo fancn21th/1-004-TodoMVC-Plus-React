@@ -1,39 +1,15 @@
-import { useState } from "react";
 import "./App.css";
 import { AddTodo } from "@/components/AddTodo/AddTodo";
-import { TodoList, Todo } from "@/components/TodoList/TodoList";
+import { TodoList } from "@/components/TodoList/TodoList";
+import { useTodos } from "@/hooks";
 
 function App() {
-  const [todos, setTodos] = useState<Todo[]>([
-    {
-      id: 1,
-      title: "吃饭",
-      completed: true,
-    },
-    {
-      id: 2,
-      title: "睡觉",
-    },
-    {
-      id: 3,
-      title: "打游戏",
-    },
-  ]);
-
-  const onAddTodo = (title: string) => {
-    setTodos([
-      ...todos,
-      {
-        id: todos.length + 1,
-        title,
-      },
-    ]);
-  };
+  const [todos, addTodo] = useTodos();
 
   return (
     <div className="App">
       <h1>React + Typescript TODOs</h1>
-      <AddTodo onAddTodo={onAddTodo} />
+      <AddTodo onAddTodo={(title) => addTodo(title)} />
       <hr />
       <TodoList todos={todos} />
     </div>

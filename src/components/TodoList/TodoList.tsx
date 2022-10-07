@@ -1,11 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
-export interface Todo {
-  title: string;
-  id: number;
-  completed?: boolean;
-}
+import { Todo } from "@/hooks";
 
 interface TodoItemProps {
   /**  Todo 对象 */
