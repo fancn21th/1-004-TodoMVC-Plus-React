@@ -12,7 +12,7 @@ type TodosAction =
       };
     }
   | {
-      type: "remove";
+      type: "remove" | "toggle";
       payload: {
         id: number;
       };
@@ -39,6 +39,22 @@ const reducer = (state: TodosState, action: TodosAction): TodosState => {
         ...state,
         todos: state.todos.filter((todo) => todo.id !== action.payload.id),
       };
+    case "toggle":
+      const index = state.todos.findIndex(
+        (todo) => todo.id === action.payload.id
+      );
+      const todo = state.todos[index];
+      return {
+        ...state,
+        todos: [
+          ...state.todos.slice(0, index),
+          {
+            ...todo,
+            completed: !todo.completed,
+          },
+          ...state.todos.slice(index + 1),
+        ],
+      };
     default:
       throw new Error();
   }
@@ -53,6 +69,7 @@ export interface Todo {
 export const useTodos = (): [
   Todo[],
   (title: string) => void,
+  (id: number) => void,
   (id: number) => void
 ] => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -75,5 +92,14 @@ export const useTodos = (): [
     });
   };
 
-  return [state.todos, addTodo, removeTodo];
+  const toggleTodo = (id: number): void => {
+    dispatch({
+      type: "toggle",
+      payload: {
+        id,
+      },
+    });
+  };
+
+  return [state.todos, addTodo, removeTodo, toggleTodo];
 };
