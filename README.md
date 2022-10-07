@@ -2,6 +2,20 @@
 
 > \+ styled component \+ storybook & on top of vite
 
+## Usage
+
+- storybook
+
+  ```shell
+  npm run storybook
+  ```
+
+- todomvc
+
+  ```shell
+  npm run dev
+  ```
+
 ## Typescript
 
 ### Function Component
@@ -12,9 +26,19 @@ const foo: FunctionComponent<FooProps>  = ({...}) => { return ...}
 
 ### Hook
 
-```tsx
-const [todo, setTodo] = useState<string>("");
-```
+- useState
+
+  ```tsx
+  const [todo, setTodo] = useState<string>("");
+  ```
+
+- useReducer
+
+  ```tsx
+  const reducer = (state: TodosState, action: TodosAction): TodosState => {
+  ...
+  };
+  ```
 
 ### Impersonate Native DOM
 
