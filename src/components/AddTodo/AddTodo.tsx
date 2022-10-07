@@ -2,7 +2,13 @@ import { useState, FunctionComponent } from "react";
 import styled from "styled-components";
 
 interface AddTodoProps {
+  /**
+   * 提示文本
+   */
   label?: string;
+  /**
+   * 新增 Todo 项 回调函数
+   */
   onAddTodo?: (newTodoTitle: string) => void;
 }
 
