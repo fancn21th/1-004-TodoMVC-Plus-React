@@ -1,10 +1,10 @@
 import { useState } from "react";
 import "./App.css";
 import { AddTodo } from "@/components/AddTodo/AddTodo";
-import { TodoList } from "@/components/TodoList/TodoList";
+import { TodoList, Todo } from "@/components/TodoList/TodoList";
 
 function App() {
-  const [todos, setTodos] = useState([
+  const [todos, setTodos] = useState<Todo[]>([
     {
       id: 1,
       title: "吃饭",
@@ -21,7 +21,13 @@ function App() {
   ]);
 
   const onAddTodo = (title: string) => {
-    console.log(title);
+    setTodos([
+      ...todos,
+      {
+        id: todos.length + 1,
+        title,
+      },
+    ]);
   };
 
   return (
