@@ -95,7 +95,14 @@ const TodoItem = ({
   ) : (
     <LI index={index} onClick={() => onToggleTodo()}>
       {title}
-      <CloseButton onClick={() => onRemoveTodo()}>×</CloseButton>
+      <CloseButton
+        onClick={(e) => {
+          e.stopPropagation();
+          onRemoveTodo();
+        }}
+      >
+        ×
+      </CloseButton>
     </LI>
   );
 };
