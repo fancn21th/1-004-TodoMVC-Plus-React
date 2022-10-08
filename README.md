@@ -10,7 +10,7 @@
   npm run storybook
   ```
 
-- funTodos
+- mock design system
 
   ```shell
   npm run dev
