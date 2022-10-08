@@ -2,6 +2,15 @@
 
 > \+ styled component \+ storybook & on top of vite
 
+In this project I would like to re-polish the old school `todo list` web app with the latest frontend technology.
+
+They are:
+
+- [typescript](https://www.typescriptlang.org/docs/handbook/2/basic-types.html)
+- react custom hook style
+- [styled component](https://styled-components.com/)
+- [storybook](https://storybook.js.org/)
+
 ## Usage
 
 - storybook
@@ -16,7 +25,7 @@
   npm run dev
   ```
 
-## How to type a React Component / Hook
+## How to type a React Component & Hook
 
 ### Function Component
 
